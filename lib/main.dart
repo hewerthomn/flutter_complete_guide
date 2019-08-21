@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/widgets/transaction_list.dart';
 
 import './models/transaction.dart';
+import './widgets/transaction_list.dart';
 import './widgets/new_transaction.dart';
 
 void main() => runApp(MyApp());
@@ -11,6 +11,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Personal Expenses',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        accentColor: Colors.amber,
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              title: TextStyle(
+                fontFamily: 'Open Sans',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                title: TextStyle(
+                  fontFamily: 'Open Sans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -42,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
+      id: DateTime.now().toString(),
       title: txTitle,
       amount: txAmount,
       date: DateTime.now(),
